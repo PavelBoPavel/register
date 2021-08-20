@@ -17,9 +17,17 @@ public class ScheduleCalendarController {
         return scheduleCalendar.findAll();
     }
 
-    public List<Slot> addSlot(String date, String duratoin){
-        Slot slot = new Slot(LocalDateTime.parse(date), Integer.parseInt(duratoin));
+    public List<Slot> addSlot(String date, String duration){
+        Slot slot = new Slot(LocalDateTime.parse(date), Integer.parseInt(duration));
         scheduleCalendar.addSlot(slot);
+        return scheduleCalendar.findAll();
+    }
+
+    public List<Slot> addBatchSlot(String[] args){
+        for (int i = 0; i < args.length; i += 2){
+            Slot slot = new Slot(LocalDateTime.parse(args[i]), Integer.parseInt(args[i + 1]));
+            scheduleCalendar.addSlot(slot);
+        }
         return scheduleCalendar.findAll();
     }
 }

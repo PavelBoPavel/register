@@ -13,13 +13,19 @@ public class BaseDispatcher {
     }
 
     public List<Slot> dispatch(String[] args) {
+        List<Slot> result = null;
         switch (args[0]) {
             case "/showSlots":
                 return scheduleCalendarController.showAllSlots();
             case "/addSlot":
-                List<Slot> result = scheduleCalendarController.addSlot(args[1], args[2]);
+                result = scheduleCalendarController.addSlot(args[1], args[2]);
                 result.forEach(System.out::println);
+                break;
+            case "/addBatchSlots":
+                result = scheduleCalendarController.addSlot(args[1], args[2]);
+                result.forEach(System.out::println);
+                break;
         }
-        return null;
+        return result;
     }
 }
