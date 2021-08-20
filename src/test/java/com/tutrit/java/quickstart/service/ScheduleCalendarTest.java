@@ -1,7 +1,6 @@
 package com.tutrit.java.quickstart.service;
 
 import com.tutrit.java.quickstart.bean.Slot;
-import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +18,7 @@ public class ScheduleCalendarTest {
     @Before
     public void setup() {
         scheduleCalendar = new ScheduleCalendar();
-        scheduleCalendar.remuveAllSlots();
+        scheduleCalendar.removeAllSlots();
     }
 
     @Test

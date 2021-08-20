@@ -37,6 +37,14 @@
             <version>5.7.0</version>
         </dependency>
 
+        <!-- Creates Mocks andSpies Tests -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.1.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- Plugin for Tests Analysis -->
         <dependency>
             <groupId>org.jacoco</groupId>
