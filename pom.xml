@@ -14,7 +14,7 @@
         <sonar.organization>javaguruby</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <!--suppress UnresolvedMavenProperty -->
-        <sonar.login>${sonar.token}</sonar.login>
+        <sonar.login>d4a43c92cc5b4686b432aa2bcfea10d230cc5b73</sonar.login>
         <!-- Java version to use on project -->
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
