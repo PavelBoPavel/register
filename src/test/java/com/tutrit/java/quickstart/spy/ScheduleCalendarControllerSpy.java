@@ -4,6 +4,7 @@ import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
 import com.tutrit.java.quickstart.service.ScheduleCalendar;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class ScheduleCalendarControllerSpy extends ScheduleCalendarController {
     }
 
     @Override
-    public List<Slot> showAllSlots(){
+    public Map<LocalDateTime, Slot> showAllSlots(){
         if (verify.containsKey("showAllSlots")){
             verify.put("showAllSlots", verify.get("showAllSlots") + 1);
         }

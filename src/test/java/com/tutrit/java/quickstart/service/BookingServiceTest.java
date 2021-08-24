@@ -8,6 +8,7 @@ import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -32,16 +33,16 @@ public class BookingServiceTest {
     public void findAllAvailableSlots() {
         appointmentCalendarSpy.addSlot(new Slot(LocalDateTime.parse("2021-01-01T19:30"), 30));
         Mockito.when(scheduleCalendarMock.findAll()).thenReturn(SlotMockProvider.makeSlotsMock());
-        List<Slot> actual = bookingService.findAllAvailableSlots();
+        Map<LocalDateTime, Slot> actual = bookingService.findAllAvailableSlots();
         assertEquals(getExpectedWhenFindAllAvailableSlots(), actual);
     }
 
-    private List<Slot> getExpectedWhenFindAllAvailableSlots() {
-        return List.of(
-                new Slot(LocalDateTime.parse("2021-01-01T19:00"), 30),
-                new Slot(LocalDateTime.parse("2021-01-01T20:00"), 30),
-                new Slot(LocalDateTime.parse("2021-01-01T20:30"), 30),
-                new Slot(LocalDateTime.parse("2021-01-01T21:00"), 30)
+    private Map<LocalDateTime, Slot> getExpectedWhenFindAllAvailableSlots() {
+        return Map.of(
+                LocalDateTime.parse("2021-01-01T19:00"), (new Slot(LocalDateTime.parse("2021-01-01T19:00"), 30)),
+                LocalDateTime.parse("2021-01-01T20:00"), (new Slot(LocalDateTime.parse("2021-01-01T20:00"), 30)),
+                LocalDateTime.parse("2021-01-01T20:30"), (new Slot(LocalDateTime.parse("2021-01-01T20:30"), 30)),
+                LocalDateTime.parse("2021-01-01T21:00"), (new Slot(LocalDateTime.parse("2021-01-01T21:00"), 30))
         );
     }
 }

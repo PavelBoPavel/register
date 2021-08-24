@@ -5,7 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -30,7 +30,7 @@ public class ScheduleCalendarTest {
 
     @Test
     public void findAll() {
-        makeSlots(5).forEach(slot -> scheduleCalendar.addSlot(slot));
+        makeSlots(5).forEach((dateTime, slot) -> scheduleCalendar.addSlot(slot));
         assertEquals(5, scheduleCalendar.findAll().size());
         assertEquals(makeSlots(5), scheduleCalendar.findAll());
     }
@@ -39,14 +39,15 @@ public class ScheduleCalendarTest {
         return new Slot(LocalDateTime.parse("2021-01-01T12:00"), 30);
     }
 
-    private List<Slot> makeSlots(int number) {
+    private Map<LocalDateTime, Slot> makeSlots(int number) {
         return IntStream.range(1, number + 1).boxed()
-                .map(i -> new Slot(LocalDateTime.parse("2021-0" + i + "-01T12:00"), 30))
-                .collect(Collectors.toList());
-
+                .collect(Collectors.toMap(
+                        i -> LocalDateTime.parse("2021-0" + i + "-01T12:00"),
+                        i -> new Slot(LocalDateTime.parse("2021-0" + i + "-01T12:00"), 30))
+                );
     }
 
-    private List<Slot> expectedSlotList() {
-       return List.of(new Slot(LocalDateTime.parse("2021-01-01T12:00"), 30));
+    private Map<LocalDateTime, Slot> expectedSlotList() {
+        return Map.of(LocalDateTime.parse("2021-01-01T12:00"), new Slot(LocalDateTime.parse("2021-01-01T12:00"), 30));
     }
 }
