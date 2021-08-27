@@ -3,7 +3,7 @@ package com.tutrit.java.quickstart.bean;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Slot {
+public class Slot implements Comparable<Slot> {
     private LocalDateTime dateTime;
     private long duration;
 
@@ -47,5 +47,10 @@ public class Slot {
                 "dateTime=" + dateTime +
                 ", duration=" + duration +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Slot o) {
+        return this.dateTime.compareTo(o.dateTime);
     }
 }
