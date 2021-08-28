@@ -68,8 +68,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
+        return getClass().getSimpleName() +
+                "{name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", slots=" + slots +
                 '}';
