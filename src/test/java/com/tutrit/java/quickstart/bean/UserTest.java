@@ -59,8 +59,6 @@ public class UserTest {
         user.setSlots(slots);
         Assert.assertNotNull(user.getSlots());
         Assert.assertEquals(2, user.getSlots().size());
-        Assert.assertTrue(user.getSlots().get(0) instanceof Slot);
-        Assert.assertTrue(user.getSlots().get(1) instanceof Slot);
     }
 
     @Test
