@@ -1,7 +1,7 @@
 package com.tutrit.java.quickstart.bean;
 
-
 import java.util.List;
+import java.util.Objects;
 
 /**
  * User is person who registers somewhere.
@@ -50,12 +50,10 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        return slots != null ? slots.equals(user.slots) : user.slots == null;
+        if (!Objects.equals(name, user.name)) return false;
+        if (!Objects.equals(surname, user.surname)) return false;
+        return Objects.equals(slots, user.slots);
     }
 
     @Override
