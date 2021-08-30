@@ -1,10 +1,9 @@
 package com.tutrit.java.quickstart.controller;
 
 import com.tutrit.java.quickstart.bean.Slot;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 public class ScheduleCalendarController {

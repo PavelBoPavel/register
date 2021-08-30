@@ -1,6 +1,7 @@
 package com.tutrit.java.quickstart.service;
 
 import com.tutrit.java.quickstart.bean.Slot;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Before;
 import org.junit.Test;
 

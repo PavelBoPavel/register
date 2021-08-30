@@ -2,12 +2,12 @@ package com.tutrit.java.quickstart.service;
 
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.mock.SlotMockProvider;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;

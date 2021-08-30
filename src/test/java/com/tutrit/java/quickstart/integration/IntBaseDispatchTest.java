@@ -4,7 +4,7 @@ import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
 import com.tutrit.java.quickstart.dispatcher.BaseDispatcher;
 import com.tutrit.java.quickstart.mock.SlotMockProvider;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
