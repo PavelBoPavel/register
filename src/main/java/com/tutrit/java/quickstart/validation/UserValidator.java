@@ -5,7 +5,7 @@ import com.tutrit.java.quickstart.exception.UserValidationException;
 
 import java.util.List;
 
-public class UserValidator {
+public class UserValidator  {
 
     private static final List<Checkable> userCheck = List.of(
             new CheckUserNotNull(),

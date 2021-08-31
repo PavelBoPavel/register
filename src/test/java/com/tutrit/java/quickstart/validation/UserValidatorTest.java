@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static com.tutrit.java.quickstart.validation.UserValidator.validation;
 
-public class UserValidatorTest {
+public class UserValidatorTest  {
 
     @Test(expected = UserValidationException.class)
     public void validationUserName() {
