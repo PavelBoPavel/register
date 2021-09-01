@@ -30,4 +30,16 @@ public class UserValidatorTest  {
     public void validationUserNotNull() {
         validation(null);
     }
+
+    @Test(expected = UserValidationException.class)
+    public void validationUserNameLenght() {
+        var userTest = new User("Ba", "Bakkunio", null);
+        validation(userTest);
+    }
+
+    @Test(expected = UserValidationException.class)
+    public void validationUserSurnameLenght() {
+        var userTest = new User("Bakke", "Bakkuniojfhdgfhskrtteuiwnvcddmbciuevfrebdhhhfcdh", null);
+        validation(userTest);
+    }
 }

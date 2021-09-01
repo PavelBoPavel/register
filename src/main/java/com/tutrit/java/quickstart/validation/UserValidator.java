@@ -5,11 +5,12 @@ import com.tutrit.java.quickstart.exception.UserValidationException;
 
 import java.util.List;
 
-public class UserValidator  {
+public class UserValidator {
 
-    private static final List<Checkable> userCheck = List.of(
+    private static final List<UserCheckable> userCheck = List.of(
             new CheckUserNotNull(),
-            new CheckUserName(),
+            new CheckUserNameAndSurnameNotNull(),
+            new CheckUserNameAndSurnameLength(),
             new CheckUserSlot()
     );
 
