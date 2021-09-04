@@ -3,9 +3,7 @@ package com.tutrit.java.quickstart.service;
 import com.tutrit.java.quickstart.bean.Slot;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ScheduleCalendar {
@@ -15,7 +13,7 @@ public class ScheduleCalendar {
         scheduleCalendarMap.put(slot.getDateTime(), slot);
     }
 
-    public Map<LocalDateTime, Slot> findAll(){
+    public Map<LocalDateTime, Slot> findAll() {
         return scheduleCalendarMap;
     }
 
