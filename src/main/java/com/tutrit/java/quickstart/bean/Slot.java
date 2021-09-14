@@ -1,9 +1,10 @@
 package com.tutrit.java.quickstart.bean;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Slot implements Comparable<Slot> {
+public class Slot implements Comparable<Slot>, Serializable {
     private LocalDateTime dateTime;
     private long duration;
 

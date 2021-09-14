@@ -10,7 +10,7 @@ public class UserValidator {
     private static final List<UserCheckable> userCheck = List.of(
             new CheckUserNotNull(),
             new CheckUserNameAndSurnameNotNull(),
-            new CheckUserNameAndSurnameLength(),
+//            new CheckUserNameAndSurnameLength(),
             new CheckUserSlot()
     );
 
