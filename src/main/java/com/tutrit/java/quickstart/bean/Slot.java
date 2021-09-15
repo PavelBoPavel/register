@@ -5,10 +5,10 @@ import java.util.Objects;
 
 /**
  * Slot is date, time and duration of some event
- * @dateTime - the start moment some event
- * @duration - = endTime - startTime   ////where startTime is @dateTime
+ * dateTime - the start moment some event
+ * duration - = endTime - startTime   ////where startTime is @dateTime
  */
-public class Slot {
+public class Slot implements Comparable<Slot> {
     private LocalDateTime dateTime;
     private long duration;
 
@@ -52,5 +52,10 @@ public class Slot {
                 "dateTime=" + dateTime +
                 ", duration=" + duration +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Slot o) {
+        return this.dateTime.compareTo(o.dateTime);
     }
 }

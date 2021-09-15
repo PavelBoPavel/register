@@ -10,7 +10,7 @@ import org.mockito.Mockito;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BookingServiceTest {
 
