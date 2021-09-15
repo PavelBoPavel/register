@@ -1,7 +1,7 @@
 package com.tutrit.java.quickstart.service;
 
 import com.tutrit.java.quickstart.bean.Slot;
-import com.tutrit.java.quickstart.mock.SlotMockProvider;
+import com.tutrit.java.quickstart.mock.MockScheduleCalendar;
 import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +32,7 @@ public class BookingServiceTest {
     @Test
     public void findAllAvailableSlots() {
         appointmentCalendarSpy.addSlot(new Slot(LocalDateTime.parse("2021-01-01T19:30"), 30));
-        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(SlotMockProvider.makeSlotsMock());
+        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(MockScheduleCalendar.makeSlotsMock());
         Map<LocalDateTime, Slot> actual = bookingService.findAllAvailableSlots();
         assertEquals(getExpectedWhenFindAllAvailableSlots(), actual);
     }

@@ -1,4 +1,4 @@
-package com.tutrit.java.quickstart.service;
+package com.tutrit.java.quickstart.repository;
 
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.repository.ScheduleCalendar;
