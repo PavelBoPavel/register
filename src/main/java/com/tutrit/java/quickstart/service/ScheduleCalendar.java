@@ -1,5 +1,6 @@
 package com.tutrit.java.quickstart.service;
 
+import com.tutrit.java.ioc.annotation.MyComponent;
 import com.tutrit.java.quickstart.bean.Slot;
 
 import com.tutrit.java.quickstart.config.Storage;
@@ -7,10 +8,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,8 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+@MyComponent
 public class ScheduleCalendar implements Serializable {
     private static final Map<LocalDateTime, Slot> scheduleCalendarMap = new HashMap<>();
 
