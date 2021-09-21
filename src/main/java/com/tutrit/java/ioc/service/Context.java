@@ -2,7 +2,6 @@ package com.tutrit.java.ioc.service;
 
 import com.tutrit.java.ioc.annotation.MyComponent;
 import com.tutrit.java.ioc.annotation.MyInjection;
-import com.tutrit.java.ioc.config.ApplicationConfiguration;
 import com.tutrit.java.quickstart.Application;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
