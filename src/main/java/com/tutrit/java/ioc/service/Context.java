@@ -3,6 +3,7 @@ package com.tutrit.java.ioc.service;
 import com.tutrit.java.ioc.annotation.MyComponent;
 import com.tutrit.java.ioc.annotation.MyInjection;
 import com.tutrit.java.quickstart.Application;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,26 +12,27 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Context {
 
+  //  IoC (Inversion Of Control) container
   private static Map<String, Object> ctx = new HashMap<>();
-//  IoC (Inversion Of Control) container
-  private static Map<String, Object> myContext = new HashMap<>();
-  private static Map<String, Class<?>> classMap = new HashMap<>();
 
   public static Map<String, Object> loadContext() {
+    // 1. create classes that annotated as MyComponent
     List<String> classNames = getClassNamesAsString();
+    Map<String, Class<?>> classMap = createClassMap(classNames);
 
-    // TODO: 9/17/21 change order:
-    createObjects(classNames);      //firstly should filter my components
-    myContext = makeComponentMap(); //and only then create their objects
+    // 2. create objects and put in context
+    createObjects(List.copyOf(classMap.values()));
 
-    List<ClassObjectPair> fields = makeFieldMap();
+    // 3. inject values into context components
+    List<ClassObjectPair> fields = makeFieldMap(classMap);
     injectValues(fields);
-    return myContext;
+
+    return ctx;
   }
 
   private static List<String> getClassNamesAsString() {
@@ -48,30 +50,40 @@ public class Context {
     }
   }
 
-  private static void createObjects(List<String> classNames) {
+  private static void createObjects(List<Class> classNames) {
     classNames.forEach(className -> createObject(className));
   }
 
-  private static void createObject(String objectClassName) {
+  private static void createObject(Class clazz) {
     try {
-      Class<?> clazz = Class.forName(objectClassName);
-      classMap.put(objectClassName, clazz);
-      ctx.put(objectClassName, clazz.getConstructor().newInstance());
+      if(isMyComponent(clazz)) {
+        ctx.put(clazz.getName(), clazz.getConstructor().newInstance());
+      }
     } catch (Exception e) {
       Application.log.warn("could not create class {}, maybe no args constructor is not present",
-          objectClassName);
+          clazz.getName());
     }
   }
 
-  private static Map<String, Object> makeComponentMap() {
-    return classMap.entrySet().stream()
-        .filter(entry -> isMyComponent(entry.getValue()))
-        .map(entry -> entry.getKey())
-        .map(key -> ctx.get(key))
-        .collect(Collectors.toMap(obj -> obj.getClass().getName(), Function.identity()));
+  private static Map<String, Class<?>> createClassMap(List<String> classNames) {
+    Map<String, Class<?>> classMap = new HashMap<>();
+    classNames
+        .stream()
+        .forEach(name -> createClass(name)
+            .ifPresent(clazz -> classMap.put(name, clazz)));
+    return classMap;
   }
 
-  private static List<ClassObjectPair> makeFieldMap() {
+  private static Optional<Class<?>> createClass(String objectClassName) {
+    try {
+      return Optional.of(Class.forName(objectClassName));
+    } catch (Exception e) {
+      Application.log.warn("could not load class {}", objectClassName);
+    }
+    return Optional.empty();
+  }
+
+  private static List<ClassObjectPair> makeFieldMap(Map<String, Class<?>> classMap) {
     return classMap.entrySet().stream()
         .filter(entry -> isMyComponent(entry.getValue()))
         .map(entry -> new ClassObjectPair(entry.getKey(), entry.getValue().getDeclaredFields()))
@@ -103,7 +115,21 @@ public class Context {
   }
 
   private static boolean isMyComponent(Class clazz) {
-    return clazz.isAnnotationPresent(MyComponent.class);
+    if(clazz.isAnnotationPresent(MyComponent.class)) {
+      return true;
+    }
+    Annotation[] annotations = clazz.getDeclaredAnnotations();
+    if (annotations.length != 0) {
+      for(Annotation annotation : annotations) {
+        Annotation[] parentAnnotations = annotation.annotationType().getAnnotations();
+        for(Annotation parentAnnotation : parentAnnotations) {
+           if (parentAnnotation.annotationType().getName().equals("com.tutrit.java.ioc.annotation.MyComponent")) {
+             return true;
+           }
+        }
+      }
+    }
+    return false;
   }
 
   private static boolean isFieldInjectable(Field field) {

@@ -1,7 +1,10 @@
 package com.tutrit.java.quickstart.service;
 
+import com.tutrit.java.ioc.service.Context;
 import com.tutrit.java.quickstart.bean.Slot;
+import com.tutrit.java.quickstart.dispatcher.BaseDispatcher;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -14,11 +17,21 @@ import static org.junit.Assert.assertEquals;
 public class ScheduleCalendarTest {
 
     ScheduleCalendar scheduleCalendar;
+    static Map<String, Object> ctx;
+
+    @BeforeClass
+    public static void loadContext() {
+        ctx = Context.loadContext();
+    }
 
     @Before
     public void setup() {
-        scheduleCalendar = new ScheduleCalendar();
-        scheduleCalendar.removeAllSlots();
+        scheduleCalendar = (ScheduleCalendar) ctx.get("com.tutrit.java.quickstart.service.ScheduleCalendar");
+        try {
+            scheduleCalendar.removeAllSlots();
+        } catch (Exception e) {
+
+        }
     }
 
     @Test
