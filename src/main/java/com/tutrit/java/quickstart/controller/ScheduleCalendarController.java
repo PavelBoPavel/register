@@ -4,7 +4,7 @@ import com.tutrit.java.ioc.annotation.MyCommand;
 import com.tutrit.java.ioc.annotation.MyComponent;
 import com.tutrit.java.ioc.annotation.MyInjection;
 import com.tutrit.java.quickstart.bean.Slot;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -23,17 +23,18 @@ public class ScheduleCalendarController {
   }
 
   @MyCommand("/showSlots")
-  public Map<LocalDateTime, Slot> showAllSlots() {
+  public Map<LocalDateTime, Slot> showAllSlots(String[] args) {
     return scheduleCalendar.findAll();
   }
 
   @MyCommand("/addSlot")
-  public Map<LocalDateTime, Slot> addSlot(String date, String duration) {
-    Slot slot = new Slot(LocalDateTime.parse(date), Integer.parseInt(duration));
+  public Map<LocalDateTime, Slot> addSlot(String[] args) {
+    Slot slot = new Slot(LocalDateTime.parse(args[0]), Integer.parseInt(args[1]));
     scheduleCalendar.addSlot(slot);
     return scheduleCalendar.findAll();
   }
 
+  @MyCommand("/addBatchSlots")
   public Map<LocalDateTime, Slot> addBatchSlot(String[] args) {
     for (int i = 0; i < args.length; i += 2) {
       Slot slot = new Slot(LocalDateTime.parse(args[i]), Integer.parseInt(args[i + 1]));

@@ -123,6 +123,7 @@ public class Context {
       for(Annotation annotation : annotations) {
         Annotation[] parentAnnotations = annotation.annotationType().getAnnotations();
         for(Annotation parentAnnotation : parentAnnotations) {
+          //Находим те которые помечены нашей аннотацией
            if (parentAnnotation.annotationType().getName().equals("com.tutrit.java.ioc.annotation.MyComponent")) {
              return true;
            }

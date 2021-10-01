@@ -1,11 +1,10 @@
 package com.tutrit.java.quickstart.service;
 
 import com.tutrit.java.quickstart.bean.Slot;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class BookingService {
