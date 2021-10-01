@@ -2,7 +2,7 @@ package com.tutrit.java.quickstart.dispatcher;
 
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
-import com.tutrit.java.quickstart.mock.SlotMockProvider;
+import com.tutrit.java.quickstart.mock.MockScheduleCalendar;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,7 +13,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BaseDispatcherTest {
@@ -24,7 +24,7 @@ public class BaseDispatcherTest {
 
     @Test
     public void dispatch() {
-        Mockito.when(scheduleCalendarControllerMock.showAllSlots()).thenReturn(SlotMockProvider.makeSlotsMock());
+        Mockito.when(scheduleCalendarControllerMock.showAllSlots()).thenReturn(MockScheduleCalendar.makeSlotsMock());
         String[] args = {"/showSlots"};
         Map<LocalDateTime, Slot> actual = baseDispatcher.dispatch(args);
         assertEquals(expectedSlots(), actual);

@@ -1,8 +1,8 @@
 package com.tutrit.java.quickstart.controller;
 
 import com.tutrit.java.quickstart.bean.Slot;
-import com.tutrit.java.quickstart.mock.SlotMockProvider;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
+import com.tutrit.java.quickstart.mock.MockScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ public class ScheduleCalendarControllerTest {
 
     @Test
     public void showAllSlots() {
-        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(SlotMockProvider.makeSlotsMock());
+        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(MockScheduleCalendar.makeSlotsMock());
         Map<LocalDateTime, Slot> actual = scheduleCalendarController.showAllSlots();
         assertEquals(expectedSlots(), actual);
     }

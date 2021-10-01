@@ -3,9 +3,8 @@ package com.tutrit.java.quickstart.integration;
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
 import com.tutrit.java.quickstart.dispatcher.BaseDispatcher;
-import com.tutrit.java.quickstart.mock.SlotMockProvider;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
-import org.junit.Assert;
+import com.tutrit.java.quickstart.mock.MockScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +13,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IntBaseDispatchTest {
@@ -31,10 +32,10 @@ public class IntBaseDispatchTest {
 
     @Test
     public void dispatch() {
-        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(SlotMockProvider.makeSlotsMock());
+        Mockito.when(scheduleCalendarMock.findAll()).thenReturn(MockScheduleCalendar.makeSlotsMock());
         String[] args = {"/showSlots"};
         Map<LocalDateTime, Slot> actual = baseDispatcher.dispatch(args);
-        Assert.assertEquals(expectedSlots(), actual);
+        assertEquals(expectedSlots(), actual);
         Mockito.verify(controllerSpy).showAllSlots();
     }
 
