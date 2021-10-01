@@ -4,7 +4,7 @@ import com.tutrit.java.ioc.annotation.MyCommand;
 import com.tutrit.java.ioc.annotation.MyComponent;
 import com.tutrit.java.ioc.annotation.MyInjection;
 import com.tutrit.java.quickstart.bean.Slot;
-import com.tutrit.java.quickstart.service.ScheduleCalendar;
+import com.tutrit.java.quickstart.repository.ScheduleCalendar;
 
 import java.time.LocalDateTime;
 import java.util.Map;

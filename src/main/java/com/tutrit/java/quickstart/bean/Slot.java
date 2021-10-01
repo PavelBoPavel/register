@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * Slot is date, time and duration of some event
+ * dateTime - the start moment some event
+ * duration - = endTime - startTime   ////where startTime is @dateTime
+ */
 public class Slot implements Comparable<Slot>, Serializable {
     private LocalDateTime dateTime;
     private long duration;
