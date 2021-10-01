@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * This is interface marker
- * It need for the testing ScheduleCalendarService
+ * It needs for the testing ScheduleCalendarService
  * @see ScheduleCalendar
  */
 public interface ScheduleCalendarRepository {
