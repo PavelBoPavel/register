@@ -6,11 +6,12 @@ import com.tutrit.java.ioc.config.ApplicationConfiguration;
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
 import com.tutrit.java.quickstart.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @MyComponent
 public class BaseDispatcher {
