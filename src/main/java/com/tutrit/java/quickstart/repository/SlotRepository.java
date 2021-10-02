@@ -22,30 +22,30 @@ public class SlotRepository implements CrudRepository<Slot, LocalDateTime> {
 
   @Override
   public Slot create(Slot slot) {
-    if (!Files.exists(Storage.slotStorage)) {
-      try {
-        Files.createDirectories(Storage.slotStorage);
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
-    }
-
-    Path slotFile = Path.of(Storage.slotStorage.toString(),
-        slot.getDateTime().toString() + Storage.extension);
-    try {
-      Files.createFile(slotFile);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    try (ObjectOutputStream oos = new ObjectOutputStream(
-        new FileOutputStream(slotFile.toString()))) {
-      oos.writeObject(slot);
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return findById(slot.getDateTime()).orElseThrow();
+//    if (!Files.exists(Storage.slotStorage)) {
+//      try {
+//        Files.createDirectories(Storage.slotStorage);
+//      } catch (IOException e) {
+//        e.printStackTrace();
+//      }
+//    }
+//
+//    Path slotFile = Path.of(Storage.slotStorage.toString(),
+//        slot.getDateTime().toString() + Storage.extension);
+//    try {
+//      Files.createFile(slotFile);
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//    try (ObjectOutputStream oos = new ObjectOutputStream(
+//        new FileOutputStream(slotFile.toString()))) {
+//      oos.writeObject(slot);
+//    } catch (FileNotFoundException e) {
+//      e.printStackTrace();
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+    return slot;//findById(slot.getDateTime()).orElseThrow();
   }
 
   @Override

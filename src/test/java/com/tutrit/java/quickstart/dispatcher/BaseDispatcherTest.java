@@ -1,5 +1,6 @@
 package com.tutrit.java.quickstart.dispatcher;
 
+import com.tutrit.java.ioc.service.Context;
 import com.tutrit.java.quickstart.bean.Slot;
 import com.tutrit.java.quickstart.controller.ScheduleCalendarController;
 import com.tutrit.java.quickstart.mock.SlotMockProvider;
@@ -39,4 +40,12 @@ public class BaseDispatcherTest {
                 LocalDateTime.parse("2021-01-01T21:00"), (new Slot(LocalDateTime.parse("2021-01-01T21:00"), 30))
         );
     }
+
+  @Test
+  public void autoDispatch() {
+      String[] args = {"/checkIfExist", "2021-01-10T12:00", "30"};
+      Context.loadContext();
+      BaseDispatcher disp = (BaseDispatcher) Context.ctx.get("com.tutrit.java.quickstart.dispatcher.BaseDispatcher");
+      disp.autoDispatch(args);
+  }
 }
