@@ -5,6 +5,7 @@ import com.tutrit.java.ioc.annotation.MyInjection;
 import com.tutrit.java.quickstart.Application;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 public class Context {
 
   //  IoC (Inversion Of Control) container
-  private static Map<String, Object> ctx = new HashMap<>();
+  public static Map<String, Object> ctx = new HashMap<>();
+  public static Map<String, Method> commands = new HashMap<>();
 
   public static Map<String, Object> loadContext() {
     // 1. create classes that annotated as MyComponent
@@ -31,6 +33,11 @@ public class Context {
     // 3. inject values into context components
     List<ClassObjectPair> fields = makeFieldMap(classMap);
     injectValues(fields);
+
+    // 4. create commands
+    Map<String, Method> methodMap = CommandContext.createMethodsMap(classMap);
+    Map<String, Method> myCommandMap = CommandContext.filterMyCommand(methodMap);
+    commands = CommandContext.createCommandNamesMap(myCommandMap);
 
     return ctx;
   }

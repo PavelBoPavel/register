@@ -31,11 +31,14 @@
     </dependency>
 
     <!-- Performs Tests -->
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <version>5.7.0</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
     </dependency>
+
 
     <!-- Create tests for equal and hashcode methods -->
     <dependency>
@@ -137,11 +140,11 @@
       </plugin>
 
       <!-- Helps maven find and execute tests -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.apache.maven.plugins</groupId>-->
+<!--        <artifactId>maven-surefire-plugin</artifactId>-->
+<!--        <version>3.0.0-M5</version>-->
+<!--      </plugin>-->
 
       <!-- Performs Tests Analysis -->
       <plugin>
